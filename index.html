@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Metro - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Addis Metro</a>
+        <ul class="menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="booking.html">Book Ticket</a></li>
+            <li><a href="bookings.html">My Tickets</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="hamburger">☰</button>
+    </nav>
+
+    <section class="hero">
+        <h1>Addis Ababa City Bus Service</h1>
+        <p>Affordable and convenient bus travel within the city</p>
+        <a href="booking.html" class="btn btn-primary">Book Ticket Now</a>
+    </section>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 1rem;">Popular Routes</h2>
+        <div class="card-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1570125909517-53cb21c89ff2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Piazza">
+                <h3>Piazza → Bole</h3>
+                <p>Route 101 | 45 minutes | ETB 8</p>
+                <a href="booking.html?from=piazza&to=bole" class="btn btn-primary">Book This Route</a>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mercato">
+                <h3>Mercato → Mexico</h3>
+                <p>Route 102 | 30 minutes | ETB 6</p>
+                <a href="booking.html?from=mercatto&to=mexico" class="btn btn-primary">Book This Route</a>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Airport">
+                <h3>Airport → Saris</h3>
+                <p>Route 103 | 35 minutes | ETB 7</p>
+                <a href="booking.html?from=airport&to=saris" class="btn btn-primary">Book This Route</a>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Quick Booking</h2>
+            <form id="quick-booking">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <select id="from" name="from" required>
+                            <option value="">Select starting point</option>
+                            <option value="piazza">Piazza</option>
+                            <option value="bole">Bole</option>
+                            <option value="mercatto">Mercato</option>
+                            <option value="mexico">Mexico Square</option>
+                            <option value="airport">Bole Airport</option>
+                            <option value="saris">Saris</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">To</label>
+                        <select id="to" name="to" required>
+                            <option value="">Select destination</option>
+                            <option value="piazza">Piazza</option>
+                            <option value="bole">Bole</option>
+                            <option value="mercatto">Mercato</option>
+                            <option value="mexico">Mexico Square</option>
+                            <option value="airport">Bole Airport</option>
+                            <option value="saris">Saris</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date">Travel Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Search Available Buses</button>
+            </form>
+        </div>
+
+        <div class="map-container">
+            <h2 class="map-title">Addis Ababa Bus Route Map</h2>
+            
+            <div id="osm-map" class="map-wrapper"></div>
+            
+            <div class="map-legend">
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #078930;"></div>
+                    <span>Bus Station</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #DA121A;"></div>
+                    <span>Main Terminal</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="border: 2px solid #078930; background: transparent;"></div>
+                    <span>Bus Route</span>
+                </div>
+            </div>
+            
+            <div class="route-info" id="route-info">
+                <h3>Route Information</h3>
+                <div id="route-details">
+                    <p>Click on any station marker to see bus routes from that location.</p>
+                </div>
+            </div>
+            
+            <div class="map-controls">
+                <button class="map-btn" id="reset-map">Reset View</button>
+                <button class="map-btn" id="show-terminal">Show Terminal</button>
+                <button class="map-btn secondary" id="show-all-routes">Show All Routes</button>
+            </div>
+            
+            <div style="margin-top: 1rem;">
+                <label for="route-selector" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Select Route to View:</label>
+                <select id="route-selector" class="form-group" style="width: 100%; padding: 0.5rem;">
+                    <option value="">Select a route</option>
+                    <option value="101">Route 101: Piazza → Bole</option>
+                    <option value="102">Route 102: Piazza → Mexico Square</option>
+                    <option value="103">Route 103: Mercato → Airport → Saris</option>
+                    <option value="104">Route 104: Mexico Square → Saris</option>
+                    <option value="105">Route 105: Airport → Bole</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Addis Metro</h3>
+                <p>Your reliable city bus service in Addis Ababa</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p><a href="index.html" style="color: white;">Home</a></p>
+                <p><a href="booking.html" style="color: white;">Book Ticket</a></p>
+                <p><a href="bookings.html" style="color: white;">My Tickets</a></p>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <p>+251 911 112 233</p>
+                <p>info@addismetro.et</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Addis Metro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
