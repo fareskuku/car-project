@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ticket - Addis Metro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">Addis Metro</a>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking.html" class="active">Book Ticket</a></li>
+            <li><a href="bookings.html">My Tickets</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <button class="hamburger">☰</button>
+    </nav>
+
+    <div class="container">
+        <h1 style="text-align: center; margin: 2rem 0;">Book Your Bus Ticket</h1>
+        
+        <div class="steps">
+            <div class="step active">1. Route Details</div>
+            <div class="step">2. Select Seats</div>
+            <div class="step">3. Passenger Info</div>
+            <div class="step">4. Confirmation</div>
+        </div>
+
+        <form id="booking-form">
+            <div class="form-section">
+                <h2>Route Details</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from-location">From</label>
+                        <select id="from-location" required>
+                            <option value="">Select starting point</option>
+                            <option value="piazza">Piazza</option>
+                            <option value="bole">Bole</option>
+                            <option value="mercatto">Mercato</option>
+                            <option value="mexico">Mexico Square</option>
+                            <option value="airport">Bole Airport</option>
+                            <option value="saris">Saris</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="to-location">To</label>
+                        <select id="to-location" required>
+                            <option value="">Select destination</option>
+                            <option value="piazza">Piazza</option>
+                            <option value="bole">Bole</option>
+                            <option value="mercatto">Mercato</option>
+                            <option value="mexico">Mexico Square</option>
+                            <option value="airport">Bole Airport</option>
+                            <option value="saris">Saris</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="travel-date">Travel Date</label>
+                        <input type="date" id="travel-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="travel-time">Preferred Time</label>
+                        <input type="time" id="travel-time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="passengers">Number of Passengers</label>
+                    <select id="passengers" required>
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                        <option value="4">4 Passengers</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section" style="display: none;">
+                <h2>Select Your Seats</h2>
+                <div class="bus-layout">
+                    <p>Select up to <span id="max-seats">4</span> seat(s) (ETB 8 per seat)</p>
+                    
+                    <div class="seat-legend">
+                        <div class="legend-item">
+                            <div class="legend-seat available"></div>
+                            <span>Available</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-seat selected"></div>
+                            <span>Selected</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-seat booked"></div>
+                            <span>Booked</span>
+                        </div>
+                    </div>
+                    
+                    <div id="seats-container" class="seats">
+                    </div>
+                    
+                    <div style="margin-top: 1rem;">
+                        <p>Selected Seats: <span id="selected-seats-count">0</span></p>
+                        <p>Seat Numbers: <span id="selected-seats-list">None</span></p>
+                        <p><strong>Total Price: ETB <span id="total-price">0</span></strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section" style="display: none;">
+                <h2>Passenger Information</h2>
+                <div id="passenger-forms">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="+251 ___ ______">
+                </div>
+            </div>
+
+            <div class="form-section" style="display: none;">
+                <h2>Confirmation</h2>
+                <div class="card">
+                    <h3>Booking Summary</h3>
+                    <p><strong>Route:</strong> <span id="summary-route"></span></p>
+                    <p><strong>Date:</strong> <span id="summary-date"></span></p>
+                    <p><strong>Time:</strong> <span id="summary-time"></span></p>
+                    <p><strong>Passengers:</strong> <span id="summary-passengers"></span></p>
+                    <p><strong>Seats:</strong> <span id="summary-seats"></span></p>
+                    <p><strong>Total:</strong> ETB <span id="summary-total"></span></p>
+                </div>
+                <div class="form-group">
+                    <label for="payment">Payment Method</label>
+                    <select id="payment" required>
+                        <option value="">Select payment method</option>
+                        <option value="telebirr">Telebirr</option>
+                        <option value="cash">Cash at Station</option>
+                        <option value="cbe">CBE Bank Transfer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions</label>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="button" class="btn btn-secondary" id="prev-btn" style="display: none;">Previous</button>
+                <button type="button" class="btn btn-primary" id="next-btn">Next Step</button>
+            </div>
+        </form>
+
+        <div id="confirmation" style="display: none; text-align: center; padding: 3rem;">
+            <h2 style="color: var(--green);">🎉 Booking Confirmed!</h2>
+            <p>Your booking has been successfully completed.</p>
+            <p><strong>Booking ID:</strong> <span id="booking-id" style="color: var(--green); font-size: 1.2rem;"></span></p>
+            <p>You can view your ticket in "My Tickets" section.</p>
+            <div style="margin-top: 2rem;">
+                <a href="bookings.html" class="btn btn-primary">View My Tickets</a>
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Addis Metro</h3>
+                <p>Your reliable city bus service in Addis Ababa</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p><a href="index.html" style="color: white;">Home</a></p>
+                <p><a href="booking.html" style="color: white;">Book Ticket</a></p>
+                <p><a href="bookings.html" style="color: white;">My Tickets</a></p>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <p>+251 911 112 233</p>
+                <p>info@addismetro.et</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Addis Metro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
