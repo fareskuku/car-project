@@ -525,6 +525,72 @@ footer {
     background: white;
 }
 
+.station-popup h3 {
+    color: #078930;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.popup-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.popup-actions button {
+    background: #078930;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.popup-actions button:last-child {
+    background: #666;
+}
+
+.route-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.route-buttons {
+    margin-top: 1rem;
+}
+
+.ticket-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.passenger-info {
+    margin-left: 1rem;
+}
+
+.modal-buttons {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.qr-placeholder {
+    width: 150px;
+    height: 150px;
+    background: #f0f0f0;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
 @media (max-width: 768px) {
     .menu {
         display: none;
@@ -587,5 +653,13 @@ footer {
     .map-btn {
         width: 100%;
         max-width: 200px;
+    }
+    
+    .route-actions {
+        flex-direction: column;
+    }
+    
+    .ticket-actions {
+        flex-direction: column;
     }
 }
