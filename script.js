@@ -358,7 +358,7 @@ function initializeBookings() {
                     <p><strong>Passengers:</strong> ${booking.passengers}</p>
                     <p><strong>Total:</strong> ETB ${booking.total}</p>
                 </div>
-                <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                <div class="ticket-actions">
                     <button class="btn btn-secondary" onclick="viewTicketDetails(${i})">View Details</button>
                     ${booking.status === 'valid' ? 
                         `<button class="btn btn-primary" onclick="useTicket(${i})">Use Ticket</button>` : 
@@ -466,15 +466,15 @@ function showStationInfo(station) {
     
     if (marker) {
         marker.bindPopup(`
-            <div style="padding:10px;min-width:200px">
-                <h3 style="color:#078930;margin-bottom:10px;font-size:1.1rem">${station.name}</h3>
+            <div class="station-popup">
+                <h3>${station.name}</h3>
                 <p><strong>Address:</strong> ${station.address}</p>
                 <p><strong>Routes:</strong> ${station.routes.join(', ')}</p>
-                <div style="margin-top:15px;display:flex;gap:8px">
-                    <button onclick="bookFromStation('${station.id}')" style="background:#078930;color:white;border:none;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:0.9rem">
+                <div class="popup-actions">
+                    <button onclick="bookFromStation('${station.id}')">
                         Book from here
                     </button>
-                    <button onclick="showRoutesFromStation('${station.id}')" style="background:#666;color:white;border:none;padding:8px 12px;border-radius:4px;cursor:pointer;font-size:0.9rem">
+                    <button onclick="showRoutesFromStation('${station.id}')">
                         Show routes
                     </button>
                 </div>
@@ -500,11 +500,11 @@ function updateRouteInfo(station) {
                     <p><strong>Stops:</strong> ${route.stops.join(' → ')}</p>
                     <p><strong>Duration:</strong> ${route.duration} | <strong>Fare:</strong> ${route.fare}</p>
                     <p><strong>Frequency:</strong> ${route.frequency}</p>
-                    <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
-                        <button class="btn btn-primary" onclick="showRoute('${routeId}')" style="padding:0.3rem 0.8rem;font-size:0.9rem">
+                    <div class="route-actions">
+                        <button class="btn btn-primary" onclick="showRoute('${routeId}')">
                             Show on Map
                         </button>
-                        <button class="btn btn-secondary" onclick="bookRoute('${route.stops[0]}','${route.stops[route.stops.length-1]}')" style="padding:0.3rem 0.8rem;font-size:0.9rem">
+                        <button class="btn btn-secondary" onclick="bookRoute('${route.stops[0]}','${route.stops[route.stops.length-1]}')">
                             Book Route
                         </button>
                     </div>
@@ -548,11 +548,11 @@ function showRoute(routeId) {
             <p><strong>Route:</strong> ${route.stops.join(' → ')}</p>
             <p><strong>Duration:</strong> ${route.duration} | <strong>Fare:</strong> ${route.fare}</p>
             <p><strong>Frequency:</strong> ${route.frequency}</p>
-            <div style="margin-top:1rem">
+            <div class="route-buttons">
                 <button class="btn btn-primary" onclick="bookRoute('${route.stops[0]}','${route.stops[route.stops.length-1]}')">
                     Book This Route
                 </button>
-                <button class="btn btn-secondary" onclick="clearRoutes()" style="margin-left:0.5rem">
+                <button class="btn btn-secondary" onclick="clearRoutes()">
                     Clear Route
                 </button>
             </div>
@@ -595,11 +595,11 @@ function setupMapControls() {
                         <p><strong>Route:</strong> ${route.stops.join(' → ')}</p>
                         <p><strong>Duration:</strong> ${route.duration} | <strong>Fare:</strong> ${route.fare}</p>
                         <p><strong>Frequency:</strong> ${route.frequency}</p>
-                        <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
-                            <button class="btn btn-primary" onclick="showRoute('${id}')" style="padding:0.3rem 0.8rem;font-size:0.9rem">
+                        <div class="route-actions">
+                            <button class="btn btn-primary" onclick="showRoute('${id}')">
                                 Show on Map
                             </button>
-                            <button class="btn btn-secondary" onclick="bookRoute('${route.stops[0]}','${route.stops[route.stops.length-1]}')" style="padding:0.3rem 0.8rem;font-size:0.9rem">
+                            <button class="btn btn-secondary" onclick="bookRoute('${route.stops[0]}','${route.stops[route.stops.length-1]}')">
                                 Book Route
                             </button>
                         </div>
@@ -655,14 +655,14 @@ function viewTicketDetails(index) {
                 <p><strong>Seats:</strong> ${booking.seats.join(', ')}</p>
                 <p><strong>Passengers:</strong> ${booking.passengers}</p>
                 <p><strong>Passenger Details:</strong></p>
-                ${booking.passengerData?.map(p => `<p style="margin-left:1rem">- ${p.name} (Age: ${p.age})</p>`).join('') || ''}
+                ${booking.passengerData?.map(p => `<p class="passenger-info">- ${p.name} (Age: ${p.age})</p>`).join('') || ''}
                 <p><strong>Email:</strong> ${booking.email}</p>
                 <p><strong>Phone:</strong> ${booking.phone}</p>
                 <p><strong>Payment:</strong> ${booking.payment}</p>
                 <p><strong>Total:</strong> ETB ${booking.total}</p>
                 <p><strong>Booked on:</strong> ${new Date(booking.booked).toLocaleString()}</p>
             </div>
-            <div style="margin-top:1rem;text-align:center">
+            <div class="modal-buttons">
                 <button class="btn btn-primary" onclick="printTicket(${index})">Print Ticket</button>
                 <button class="btn btn-secondary" onclick="this.parentElement.parentElement.remove()">Close</button>
             </div>
@@ -714,11 +714,11 @@ function printTicket(index) {
                     <div class="info"><strong>Seats:</strong> ${booking.seats.join(', ')}</div>
                     <div class="info"><strong>Passengers:</strong> ${booking.passengers}</div>
                     <div class="qr">
-                        <div style="width:150px;height:150px;background:#f0f0f0;margin:0 auto;display:flex;align-items:center;justify-content:center">
+                        <div class="qr-placeholder">
                             QR Code<br>${booking.id}
                         </div>
                     </div>
-                    <p style="text-align:center;margin-top:20px">Present this ticket when boarding</p>
+                    <p class="ticket-footer">Present this ticket when boarding</p>
                 </div>
                 <script>window.onload=()=>{window.print();setTimeout(()=>window.close(),1000)}</script>
             </body>
