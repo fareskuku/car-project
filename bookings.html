@@ -19,41 +19,40 @@
     </nav>
 
     <div class="container">
-        <h1 style="text-align: center; margin: 2rem 0;">My Tickets</h1>
+        <h1 class="page-title">My Tickets</h1>
         
-        <div style="margin-bottom: 2rem;">
+        <div class="search-filter">
             <div class="form-group">
                 <input type="text" id="search-bookings" placeholder="Search bookings...">
             </div>
-            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+            <div class="filter-buttons">
                 <button class="btn btn-secondary filter-btn active" data-filter="all">All Tickets</button>
                 <button class="btn btn-secondary filter-btn" data-filter="valid">Valid</button>
                 <button class="btn btn-secondary filter-btn" data-filter="used">Used</button>
             </div>
         </div>
 
-        <div class="card" style="margin-bottom: 2rem;">
+        <div class="card stats-card">
             <h3>Booking Statistics</h3>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
-                <div>
+            <div class="stats-grid">
+                <div class="stat-item">
                     <h4 id="total-bookings">0</h4>
                     <p>Total Bookings</p>
                 </div>
-                <div>
+                <div class="stat-item">
                     <h4 id="valid-bookings">0</h4>
                     <p>Valid Tickets</p>
                 </div>
-                <div>
+                <div class="stat-item">
                     <h4 id="used-bookings">0</h4>
                     <p>Used Tickets</p>
                 </div>
             </div>
         </div>
 
-        <div id="bookings-list">
-        </div>
+        <div id="bookings-list"></div>
 
-        <div id="no-bookings" style="text-align: center; padding: 3rem; display: none;">
+        <div id="no-bookings" class="empty-state">
             <h3>No Tickets Found</h3>
             <p>You haven't booked any tickets yet.</p>
             <a href="booking.html" class="btn btn-primary">Book Your First Ticket</a>
@@ -68,9 +67,9 @@
             </div>
             <div>
                 <h4>Quick Links</h4>
-                <p><a href="index.html" style="color: white;">Home</a></p>
-                <p><a href="booking.html" style="color: white;">Book Ticket</a></p>
-                <p><a href="bookings.html" style="color: white;">My Tickets</a></p>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="booking.html">Book Ticket</a></p>
+                <p><a href="bookings.html">My Tickets</a></p>
             </div>
             <div>
                 <h4>Contact Us</h4>
