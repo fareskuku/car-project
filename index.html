@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin="" />
+          crossorigin="">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
@@ -31,7 +31,7 @@
     </section>
 
     <div class="container">
-        <h2 style="text-align: center; margin-bottom: 1rem;">Popular Routes</h2>
+        <h2 class="section-title">Popular Routes</h2>
         <div class="card-grid">
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1570125909517-53cb21c89ff2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Piazza">
@@ -42,19 +42,19 @@
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mercato">
                 <h3>Mercato → Mexico</h3>
-                <p>Route 102 | 30 minutes | ETB 15</p>
+                <p>Route 102 | 30 minutes | ETB 10</p>
                 <a href="booking.html?from=mercatto&to=mexico" class="btn btn-primary">Book This Route</a>
             </div>
             <div class="card">
                 <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Airport">
                 <h3>Airport → Saris</h3>
-                <p>Route 103 | 35 minutes | ETB 10</p>
+                <p>Route 103 | 35 minutes | ETB 15</p>
                 <a href="booking.html?from=airport&to=saris" class="btn btn-primary">Book This Route</a>
             </div>
         </div>
 
         <div class="form-container">
-            <h2 style="text-align: center; margin-bottom: 1.5rem;">Quick Booking</h2>
+            <h2 class="form-title">Quick Booking</h2>
             <form id="quick-booking">
                 <div class="form-row">
                     <div class="form-group">
@@ -86,7 +86,7 @@
                     <label for="date">Travel Date</label>
                     <input type="date" id="date" name="date" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Search Available Buses</button>
+                <button type="submit" class="btn btn-primary full-width">Search Available Buses</button>
             </form>
         </div>
 
@@ -97,15 +97,15 @@
             
             <div class="map-legend">
                 <div class="legend-item">
-                    <div class="legend-icon" style="background: #078930;"></div>
+                    <div class="legend-icon bus-station"></div>
                     <span>Bus Station</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-icon" style="background: #DA121A;"></div>
+                    <div class="legend-icon main-terminal"></div>
                     <span>Main Terminal</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-icon" style="border: 2px solid #078930; background: transparent;"></div>
+                    <div class="legend-icon bus-route"></div>
                     <span>Bus Route</span>
                 </div>
             </div>
@@ -123,9 +123,9 @@
                 <button class="map-btn secondary" id="show-all-routes">Show All Routes</button>
             </div>
             
-            <div style="margin-top: 1rem;">
-                <label for="route-selector" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Select Route to View:</label>
-                <select id="route-selector" class="form-group" style="width: 100%; padding: 0.5rem;">
+            <div class="route-selector">
+                <label for="route-selector">Select Route to View:</label>
+                <select id="route-selector">
                     <option value="">Select a route</option>
                     <option value="101">Route 101: Piazza → Bole</option>
                     <option value="102">Route 102: Piazza → Mexico Square</option>
@@ -145,9 +145,9 @@
             </div>
             <div>
                 <h4>Quick Links</h4>
-                <p><a href="index.html" style="color: white;">Home</a></p>
-                <p><a href="booking.html" style="color: white;">Book Ticket</a></p>
-                <p><a href="bookings.html" style="color: white;">My Tickets</a></p>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="booking.html">Book Ticket</a></p>
+                <p><a href="bookings.html">My Tickets</a></p>
             </div>
             <div>
                 <h4>Contact Us</h4>
@@ -162,5 +162,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
